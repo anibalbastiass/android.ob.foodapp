@@ -1,0 +1,11 @@
+dokkaHtml.configure {
+    dokkaSourceSets {
+        configureEach {
+            jdkVersion.set(8)
+            reportUndocumented.set(false)
+            skipDeprecated.set(true)
+            skipEmptyPackages.set(true)
+            outputDirectory.set(file("$rootDir/documentation/$project.name"))
+        }
+    }
+}
