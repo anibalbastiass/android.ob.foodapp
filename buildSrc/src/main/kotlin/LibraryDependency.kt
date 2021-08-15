@@ -50,8 +50,8 @@ object LibraryDependency {
 
     // Firebase
     const val FIREBASE_BOM = "com.google.firebase:firebase-bom:${LibraryVersion.FIREBASE}"
-    const val FIREBASE_AUTH = "com.google.firebase:firebase-crashlytics-ktx"
-    const val FIREBASE_FIRE_STORE = "com.google.firebase:firebase-crashlytics-ktx"
+    const val FIREBASE_AUTH = "com.google.firebase:firebase-auth-ktx"
+    const val FIREBASE_FIRE_STORE = "com.google.firebase:firebase-firestore-ktx"
     const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics-ktx"
     const val FIREBASE_PERFORMANCE = "com.google.firebase:firebase-perf-ktx"
     const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"

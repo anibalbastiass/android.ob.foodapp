@@ -38,9 +38,9 @@ kapt {
 }
 
 dependencies {
-//    implementation(project(ModuleDependency.LIBRARY_UI_CORE))
-//    implementation(project(ModuleDependency.LIBRARY_MVI_CORE))
-//    implementation(project(ModuleDependency.LIBRARY_TEST_CORE))
+    implementation(project(ModuleDependency.LIBRARY_UI_CORE))
+    implementation(project(ModuleDependency.LIBRARY_MVI_CORE))
+    implementation(project(ModuleDependency.LIBRARY_TEST_CORE))
 
     addCommonUIDependencies()
     addFirebaseDependencies()

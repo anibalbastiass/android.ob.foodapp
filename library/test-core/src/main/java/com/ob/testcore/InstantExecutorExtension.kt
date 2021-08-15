@@ -1,4 +1,4 @@
-package com.ob.testutils
+package com.ob.testcore
 
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor

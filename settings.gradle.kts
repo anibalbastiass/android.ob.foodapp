@@ -43,7 +43,7 @@ rootProject.name = "food_app"
 rootProject.buildFileName = "build.gradle.kts"
 include(
     "app",
-    "testutils", // "library:test-core"
-//    "library:ui-core",
-//    "library:mvi-core",
+    "library:test-core",
+    "library:ui-core",
+    "library:mvi-core"
 )

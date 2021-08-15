@@ -4,6 +4,8 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 fun DependencyHandler.addFirebaseDependencies() {
     implementation(platform(LibraryDependency.FIREBASE_BOM))
+    implementation(LibraryDependency.FIREBASE_AUTH)
+    implementation(LibraryDependency.FIREBASE_FIRE_STORE)
     implementation(LibraryDependency.FIREBASE_CRASHLYTICS)
     implementation(LibraryDependency.FIREBASE_ANALYTICS)
     implementation(LibraryDependency.FIREBASE_PERFORMANCE)
@@ -36,7 +38,7 @@ fun DependencyHandler.addCommonUIDependencies() {
 }
 
 fun DependencyHandler.addTestDependencies() {
-    testImplementation(project(ModuleDependency.TEST_UTILS))
+    testImplementation(project(ModuleDependency.LIBRARY_TEST_CORE))
 
     // Unit Tests
     testRuntimeOnly(TestLibraryDependency.JUNIT_ENGINE)

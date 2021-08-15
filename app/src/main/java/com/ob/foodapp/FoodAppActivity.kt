@@ -18,7 +18,8 @@ import org.kodein.di.generic.kcontext
 class FoodAppActivity : AppCompatActivity(), KodeinAware {
 
     private val parentKodein by kodein()
-    lateinit var binding: ActivityFoodAppBinding
+    private lateinit var binding: ActivityFoodAppBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     @SuppressWarnings("LeakingThisInConstructor")
     override val kodeinContext = kcontext<AppCompatActivity>(this)
@@ -44,8 +45,8 @@ class FoodAppActivity : AppCompatActivity(), KodeinAware {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = findNavController(R.id.navHostFragment)
-//        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-//    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.navHostFragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 }

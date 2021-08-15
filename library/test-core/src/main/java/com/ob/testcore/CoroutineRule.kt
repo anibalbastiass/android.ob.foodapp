@@ -1,4 +1,4 @@
-package com.ob.testutils
+package com.ob.testcore
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
