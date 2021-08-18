@@ -9,9 +9,9 @@ abstract class MviViewModel<ViewState : MviViewState, ViewAction : MviAction>(
 ) : ViewModel() {
 
     private val stateMutableLiveData = MutableLiveData<ViewState>()
-    var stateLiveData = stateMutableLiveData.asLiveData()
+    val stateLiveData = stateMutableLiveData.asLiveData()
 
-    private var state by Delegates.observable(initialState) { _, _, new ->
+    private var state by Delegates.observable(initialState) { _, old, new ->
         stateMutableLiveData.value = new
     }
 
@@ -25,5 +25,5 @@ abstract class MviViewModel<ViewState : MviViewState, ViewAction : MviAction>(
 
     protected open fun onLoadData() {}
 
-    abstract fun onReduceState(viewAction: ViewAction): ViewState
+    protected abstract fun onReduceState(viewAction: ViewAction): ViewState
 }
