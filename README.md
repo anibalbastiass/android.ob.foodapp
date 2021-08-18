@@ -43,6 +43,7 @@ For reuse this library, add this following data in your local `~/.gradle/gradle.
 * Migrate to Jetpack Compose
 * Migrate from KodeIn to Dagger Hilt
 * Implement Dark Mode
+* Implement Dynamic Features whether the app grows too much.
 
 ## Contributions
 
