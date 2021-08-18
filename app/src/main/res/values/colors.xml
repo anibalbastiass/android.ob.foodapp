@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1976d2</color>
-    <color name="colorPrimaryDark">#004ba0</color>
-    <color name="colorAccent">#63a4ff</color>
+    <color name="colorPrimary">#FFF5E0</color>
+    <color name="colorPrimaryDark">#FFF5E0</color>
+    <color name="colorAccent">#73665C</color>
 
     <color name="backgroundDefault">#FFF5E0</color>
+
+    <color name="green_tab">#84BD93</color>
+    <color name="textPrimaryColor">#3F2D20</color>
+    <color name="textSecondaryColor">#BCB3AB</color>
 </resources>
