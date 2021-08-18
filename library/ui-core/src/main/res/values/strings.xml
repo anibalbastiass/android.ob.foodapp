@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="firebase_an">Firebase and\nfresh food</string>
+    <string name="sign_in_to_">Sign in to your account below 👇</string>
+    <string name="your_email">Your Email</string>
+    <string name="your_password">Your Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="what_would_">What would\nyou like?</string>
 </resources>

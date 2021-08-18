@@ -5,12 +5,110 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundDefault">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp20"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivIsotype"
+            android:layout_width="@dimen/dp180"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp20"
+            android:src="@drawable/ic_foodapp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+
+        <com.ob.uicore.atoms.TitleTextView
+            android:id="@+id/firebaseAn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp20"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_horizontal|top"
+            android:text="@string/firebase_an"
+            android:textAppearance="@style/firebase_an"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivIsotype" />
+
+        <TextView
+            android:id="@+id/signInTo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_horizontal|top"
+            android:text="@string/sign_in_to_"
+            android:textAppearance="@style/sign_in_to_"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firebaseAn" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/textbox"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/your_email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:maxEms="50"
+            android:maxLines="1"
+            android:textAppearance="@style/your_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signInTo" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/textbox"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/your_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxEms="50"
+            android:maxLines="1"
+            android:textAppearance="@style/your_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_primary"
+            android:fontFamily="@font/poppins_regular"
+            android:stateListAnimator="@null"
+            android:text="@string/sign_in"
+            android:textAppearance="@style/sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

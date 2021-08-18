@@ -25,8 +25,9 @@
         <activity
             android:name=".FoodAppActivity"
             android:exported="true"
-            android:screenOrientation="nosensor"
-            android:windowSoftInputMode="stateVisible|adjustUnspecified">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

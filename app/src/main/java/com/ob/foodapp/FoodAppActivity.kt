@@ -42,7 +42,6 @@ class FoodAppActivity : AppCompatActivity(), KodeinAware {
         super.onCreate(savedInstanceState)
         binding = ActivityFoodAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
     }
 
     override fun onSupportNavigateUp(): Boolean {

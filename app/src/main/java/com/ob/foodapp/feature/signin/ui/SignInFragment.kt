@@ -31,5 +31,15 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSignInBinding.bind(view)
         kodeinTrigger?.trigger()
+
+        setupTitleView()
+    }
+
+    private fun setupTitleView() {
+        binding.firebaseAn.initTitleText(
+            context = requireContext(),
+            fullText = getString(R.string.firebase_an),
+            boldText = "and\nfresh food"
+        )
     }
 }
