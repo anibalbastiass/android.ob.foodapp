@@ -33,6 +33,7 @@ fun DependencyHandler.addCommonUIDependencies() {
     implementation(LibraryDependency.COROUTINES_ANDROID)
     implementation(LibraryDependency.COROUTINES_CORE)
 
+    implementation(LibraryDependency.LIFECYCLE_EXTENSIONS)
     implementation(LibraryDependency.LIFECYCLE_VIEW_MODEL_KTX)
     kapt(LibraryDependency.LIFECYCLE_COMPILER)
 }

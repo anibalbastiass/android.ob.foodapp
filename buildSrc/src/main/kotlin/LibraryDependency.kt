@@ -13,6 +13,7 @@ private object LibraryVersion {
     const val FRAGMENT_KTX = "1.2.5"
     const val LIFECYCLE_VIEW_MODEL_KTX = "2.2.0"
     const val FIREBASE = "26.1.0"
+    const val LIFECYCLE = "1.1.1"
 }
 
 object LibraryDependency {
@@ -42,6 +43,7 @@ object LibraryDependency {
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.LIFECYCLE_VIEW_MODEL_KTX}"
     const val LIFECYCLE_COMPILER =
         "androidx.lifecycle:lifecycle-compiler:${LibraryVersion.LIFECYCLE_VIEW_MODEL_KTX}"
+    const val LIFECYCLE_EXTENSIONS = "android.arch.lifecycle:extensions:${LibraryVersion.LIFECYCLE}"
     const val NAVIGATION_FRAGMENT_KTX =
         "androidx.navigation:navigation-fragment-ktx:${CoreVersion.NAVIGATION}"
 

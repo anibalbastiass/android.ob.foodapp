@@ -2,6 +2,7 @@ package com.ob.foodapp
 
 import android.app.Application
 import com.ob.foodapp.di.FragmentArgsExternalSource
+import com.ob.foodapp.feature.signin.firebaseAuthModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -16,7 +17,8 @@ class FoodAppApplication : Application(), KodeinAware {
         externalSources.add(FragmentArgsExternalSource())
 
         bind() from singleton { FoodAppNavigator() }
-        // TODO: Add feature modules
+
+        import(firebaseAuthModule)
     }
 
     override fun onCreate() {
