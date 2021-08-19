@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.ob.foodapp.BuildConfig
+import com.ob.foodapp.FoodAppNavigator
 import com.ob.foodapp.R
 import com.ob.foodapp.databinding.FragmentResultBinding
 import com.ob.foodapp.feature.result.presentation.viewmodel.ResultViewModel
@@ -26,6 +27,8 @@ import org.kodein.di.generic.kcontext
 
 class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
 
+    private var mainView: View? = null
+
     @SuppressWarnings("LeakingThisInConstructor")
     override val kodeinContext = kcontext<Fragment>(this)
     override val kodein by kodein()
@@ -35,6 +38,7 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
 
     private lateinit var binding: FragmentResultBinding
     private val resultViewModel: ResultViewModel by instance()
+    private val navigator: FoodAppNavigator by instance()
     private val resultAdapter = ResultAdapter()
 
     private val stateObserver = Observer<ResultViewState> { viewState ->
@@ -61,11 +65,16 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentResultBinding.bind(view)
         kodeinTrigger?.trigger()
+
+        this.mainView = view
+
         initTitle()
         initResultAdapter()
         onSelectTabItem()
 
         observe(resultViewModel.stateLiveData, stateObserver)
+
+        resultViewModel.getItemsByCategory(binding.tlCategories.getTabAt(0)?.text.toString())
     }
 
     private fun onSelectTabItem() {
@@ -99,6 +108,10 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
             fullText = getString(R.string.what_would_),
             boldText = "you like?"
         )
+
+        binding.ivProfile.setOnClickListener {
+            navigator.navigateToProfile(mainView!!, "")
+        }
     }
 
 }

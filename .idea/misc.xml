@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/layout/activity_content_main.xml" value="0.178125" />
         <entry key="app/src/main/res/layout/activity_food_app.xml" value="0.3255208333333333" />
         <entry key="app/src/main/res/layout/activity_nav_host.xml" value="0.2777777777777778" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3255208333333333" />
         <entry key="app/src/main/res/layout/fragment_result.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/layout/fragment_result_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_result_page.xml" value="0.178125" />
@@ -20,9 +21,11 @@
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.31851851851851853" />
         <entry key="library/ui-core/src/main/res/drawable/button_favorite.xml" value="0.3416666666666667" />
         <entry key="library/ui-core/src/main/res/drawable/button_primary.xml" value="0.31574074074074077" />
+        <entry key="library/ui-core/src/main/res/drawable/button_secondary.xml" value="0.3416666666666667" />
         <entry key="library/ui-core/src/main/res/drawable/card_item.xml" value="0.19427083333333334" />
         <entry key="library/ui-core/src/main/res/drawable/ic_favourite.xml" value="0.3416666666666667" />
         <entry key="library/ui-core/src/main/res/drawable/ic_foodapp.xml" value="0.3416666666666667" />
+        <entry key="library/ui-core/src/main/res/drawable/oval_placeholder.xml" value="0.3416666666666667" />
         <entry key="library/ui-core/src/main/res/drawable/round_placeholder.xml" value="0.31296296296296294" />
         <entry key="library/ui-core/src/main/res/drawable/tab_indicator.xml" value="0.19427083333333334" />
         <entry key="library/ui-core/src/main/res/drawable/textbox.xml" value="0.19427083333333334" />

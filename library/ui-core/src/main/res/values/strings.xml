@@ -6,4 +6,6 @@
     <string name="your_password">Your Password</string>
     <string name="sign_in">Sign In</string>
     <string name="what_would_">What would\nyou like?</string>
+    <string name="edit_your_p">Edit Your Profile</string>
+    <string name="someuser_gm">someUser@gmail.com</string>
 </resources>
