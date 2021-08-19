@@ -2,6 +2,7 @@ package com.ob.foodapp
 
 import android.app.Application
 import com.ob.foodapp.di.FragmentArgsExternalSource
+import com.ob.foodapp.feature.result.firebaseResultModule
 import com.ob.foodapp.feature.signin.firebaseAuthModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -19,6 +20,7 @@ class FoodAppApplication : Application(), KodeinAware {
         bind() from singleton { FoodAppNavigator() }
 
         import(firebaseAuthModule)
+        import(firebaseResultModule)
     }
 
     override fun onCreate() {
