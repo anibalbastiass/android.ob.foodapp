@@ -14,6 +14,7 @@ private object LibraryVersion {
     const val LIFECYCLE_VIEW_MODEL_KTX = "2.2.0"
     const val FIREBASE = "26.1.0"
     const val LIFECYCLE = "1.1.1"
+    const val GLIDE = "4.12.0"
 }
 
 object LibraryDependency {
@@ -58,3 +59,9 @@ object LibraryDependency {
     const val FIREBASE_PERFORMANCE = "com.google.firebase:firebase-perf-ktx"
     const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
 }
+
+object ThirdPartyLibrary {
+    const val GLIDE = "com.github.bumptech.glide:glide:${LibraryVersion.GLIDE}"
+    const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${LibraryVersion.GLIDE}"
+}
+

@@ -38,15 +38,18 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), KodeinAware {
 
     private val stateObserver = Observer<SignInViewState> { viewState ->
         when (viewState) {
-            SignInViewState.InitialState -> TODO()
+            SignInViewState.InitialState -> {
+                // Nothing to do here
+            }
             is SignInViewState.UserFound -> {
                 viewState.user.apply {
-                    // Hide progress bar
-//                    navigator.navigateToResult(mainView!!, email)
-                    Toast.makeText(requireContext(), "$email\n$name", Toast.LENGTH_LONG).show()
+                    binding.pbSignIn.visibility = View.GONE
+                    navigator.navigateToResult(mainView!!, email)
                 }
             }
             SignInViewState.NotUserFound -> {
+                binding.pbSignIn.visibility = View.GONE
+                binding.btnSignIn.visibility = View.VISIBLE
                 Toast.makeText(requireContext(), "User Not Found!", Toast.LENGTH_LONG).show()
             }
         }
@@ -74,6 +77,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), KodeinAware {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
+            binding.pbSignIn.visibility = View.VISIBLE
+            binding.btnSignIn.visibility = View.GONE
             authViewModel.signIn(email, password)
         }
 

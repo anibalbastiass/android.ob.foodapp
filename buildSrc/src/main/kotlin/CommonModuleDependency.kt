@@ -36,6 +36,13 @@ fun DependencyHandler.addCommonUIDependencies() {
     implementation(LibraryDependency.LIFECYCLE_EXTENSIONS)
     implementation(LibraryDependency.LIFECYCLE_VIEW_MODEL_KTX)
     kapt(LibraryDependency.LIFECYCLE_COMPILER)
+
+    add3rdPartyLibs()
+}
+
+private fun DependencyHandler.add3rdPartyLibs() {
+    implementation(ThirdPartyLibrary.GLIDE)
+    annotationProcessor(ThirdPartyLibrary.GLIDE_COMPILER)
 }
 
 fun DependencyHandler.addTestDependencies() {
@@ -65,6 +72,10 @@ fun DependencyHandler.addTestDependencies() {
     androidTestImplementation(TestLibraryDependency.KLUENT_ANDROID)
     androidTestImplementation(TestLibraryDependency.MOCKITO_ANDROID)
 }
+
+@Suppress("detekt.UnusedPrivateMember")
+private fun DependencyHandler.annotationProcessor(dependencyNotation: Any): Dependency? =
+    add("annotationProcessor", dependencyNotation)
 
 @Suppress("detekt.UnusedPrivateMember")
 private fun DependencyHandler.implementation(dependencyNotation: Any): Dependency? =

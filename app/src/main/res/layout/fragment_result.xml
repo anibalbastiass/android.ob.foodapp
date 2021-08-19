@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundDefault">
+
+    <com.ob.uicore.atoms.TitleTextView
+        android:id="@+id/tvResultTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="top"
+        android:text="@string/what_would_"
+        android:textAppearance="@style/what_would_"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/round_placeholder"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/profile_placeholder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvResultTitle"
+        app:tabGravity="center"
+        app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorColor="@color/green_tab"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="5dp"
+        app:tabMode="scrollable"
+        app:tabPaddingBottom="0dp"
+        app:tabPaddingEnd="20dp"
+        app:tabPaddingStart="20dp"
+        app:tabPaddingTop="0dp"
+        app:tabSelectedTextColor="@color/textPrimaryColor"
+        app:tabTextAppearance="@style/TabTextAppearance"
+        app:tabTextColor="@color/textSecondaryColor" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpResult"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlCategories"
+        custom:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResult"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlCategories"
+        tools:itemCount="12"
+        tools:listitem="@layout/fragment_result_item"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

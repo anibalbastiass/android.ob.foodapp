@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Food App</string>
     <string name="fragment_sign_in">Sign In</string>
+    <string name="fragment_result">Result</string>
 </resources>

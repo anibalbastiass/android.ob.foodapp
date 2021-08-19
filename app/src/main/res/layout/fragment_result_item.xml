@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/card_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivFood"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/food_placeholder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFoodTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textAppearance="@style/specials_su"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvFoodPrice"
+            app:layout_constraintEnd_toStartOf="@+id/ivFavorite"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ivFood"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Specials SushiFull Set" />
+
+        <TextView
+            android:id="@+id/tvFoodPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textAppearance="@style/special_price"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivFood"
+            app:layout_constraintTop_toBottomOf="@+id/tvFoodTitle"
+            tools:text="$38.60" />
+
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_favorite"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_favourite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="#3F2D20" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
