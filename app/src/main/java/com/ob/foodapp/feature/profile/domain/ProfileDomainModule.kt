@@ -1,7 +1,7 @@
 package com.ob.foodapp.feature.profile.domain
 
 import com.ob.foodapp.feature.profile.domain.usecase.GetProfileUseCase
-import com.ob.foodapp.feature.result.MODULE_NAME
+import com.ob.foodapp.feature.profile.MODULE_NAME
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance

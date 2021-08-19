@@ -66,6 +66,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
     }
 
     private fun fetchProfileData() {
-        profileViewModel.getProfile("ivan.simmons@example.com")
+//        profileViewModel.getProfile("ivan.simmons@example.com")
     }
 }
