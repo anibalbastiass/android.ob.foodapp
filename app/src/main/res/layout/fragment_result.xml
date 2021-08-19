@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/ivProfile"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_margin="20dp"

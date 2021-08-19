@@ -42,4 +42,14 @@
         <item name="android:textColor">#73665C</item>
     </style>
 
+    <style name="edit_your_p">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#EF8829</item>
+    </style>
+
+    <style name="someuser_gm">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#3F2D20</item>
+    </style>
+
 </resources>
