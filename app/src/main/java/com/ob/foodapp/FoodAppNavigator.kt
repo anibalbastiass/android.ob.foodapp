@@ -36,4 +36,9 @@ class FoodAppNavigator {
         navController.navigateUp()
         navController.navigate(direction)
     }
+
+    fun goBackToResult(view: View) {
+        val direction = ProfileFragmentDirections.actionNavProfileToNavResult()
+        view.findNavController().navigate(direction)
+    }
 }

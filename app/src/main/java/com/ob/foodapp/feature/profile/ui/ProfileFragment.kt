@@ -10,6 +10,7 @@ import com.ob.foodapp.BuildConfig
 import com.ob.foodapp.FoodAppNavigator
 import com.ob.foodapp.R
 import com.ob.foodapp.databinding.FragmentProfileBinding
+import com.ob.foodapp.feature.profile.presentation.model.UiProfile
 import com.ob.foodapp.feature.profile.presentation.viewmodel.ProfileViewModel
 import com.ob.foodapp.feature.profile.presentation.viewstate.ProfileViewState
 import com.ob.foodapp.feature.signin.presentation.viewmodel.AuthViewModel
@@ -44,6 +45,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
             AuthViewState.SignOutSuccess -> {
                 navigator.navigateToSignIn(mainView!!)
             }
+            AuthViewState.NotUserFound -> {
+                Toast.makeText(requireContext(), "SignOut Error!", Toast.LENGTH_LONG).show()
+            }
             else -> {
                 // Nothing to do
             }
@@ -72,9 +76,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
                     )
                 }
 
+                // Set Click Listener
+                binding.btnSaveProfile.setOnClickListener {
+                    saveProfileData(profile)
+                }
             }
             ProfileViewState.NotFoundProfile -> {
                 Toast.makeText(requireContext(), "User Not Found!", Toast.LENGTH_LONG).show()
+            }
+            ProfileViewState.UpdateProfile -> {
+                navigator.goBackToResult(mainView!!)
             }
         }
     }
@@ -99,17 +110,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
     }
 
     private fun setClickListeners() {
-        binding.btnSaveProfile.setOnClickListener {
-            saveProfileData()
-        }
-
         binding.btnSignOut.setOnClickListener {
             signOut()
         }
     }
 
-    private fun saveProfileData() {
+    private fun saveProfileData(profile: UiProfile) {
+        profile.name = binding.etName.text.toString()
+        profile.city = binding.etCity.text.toString()
+        profile.bio = binding.etBio.text.toString()
 
+        profileViewModel.updateProfile(profile, args.userId)
     }
 
     private fun fetchProfileData() {

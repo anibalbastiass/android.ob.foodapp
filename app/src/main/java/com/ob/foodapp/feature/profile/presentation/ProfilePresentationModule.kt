@@ -18,6 +18,7 @@ internal val presentationModule = Kodein.Module("${MODULE_NAME}PresentationModul
         KotlinViewModelProvider.of(context) {
             ProfileViewModel(
                 instance(),
+                instance(),
                 instance()
             )
         }

@@ -14,4 +14,14 @@ class UiProfileMapper {
         avatarUrl = avatarUrl ?: "",
         likes = likes ?: arrayListOf()
     )
+
+    fun UiProfile.fromUiToDomain(userId: String) = DomainProfile(
+        id = userId,
+        name = name,
+        email = email,
+        city = city,
+        bio = bio,
+        avatarUrl = avatarUrl,
+        likes = likes
+    )
 }

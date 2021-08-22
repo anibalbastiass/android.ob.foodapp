@@ -8,15 +8,15 @@
     <action
         android:id="@+id/action_nav_sign_in"
         app:destination="@+id/nav_sign_in"
-        app:popUpTo="@+id/app_navigation_graph"
         app:launchSingleTop="true"
+        app:popUpTo="@+id/app_navigation_graph"
         app:popUpToInclusive="true" />
 
     <action
         android:id="@+id/action_nav_result"
         app:destination="@+id/nav_result"
-        app:popUpTo="@+id/app_navigation_graph"
         app:launchSingleTop="true"
+        app:popUpTo="@+id/app_navigation_graph"
         app:popUpToInclusive="true" />
 
     <fragment
@@ -28,9 +28,9 @@
         <action
             android:id="@+id/action_nav_sign_in_to_nav_result"
             app:destination="@id/nav_result"
+            app:launchSingleTop="true"
             app:popUpTo="@+id/app_navigation_graph"
-            app:popUpToInclusive="true"
-            app:launchSingleTop="true" />
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -62,8 +62,9 @@
 
         <action
             android:id="@+id/action_nav_profile_to_nav_sign_in"
+            app:destination="@+id/nav_sign_in"
             app:launchSingleTop="true"
-            app:popUpTo="@id/nav_sign_in"
+            app:popUpTo="@+id/app_navigation_graph"
             app:popUpToInclusive="true" />
 
         <action

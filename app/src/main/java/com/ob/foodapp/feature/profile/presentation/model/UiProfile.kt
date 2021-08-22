@@ -8,10 +8,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class UiProfile(
     val id: String,
-    val name: String,
+    var name: String,
     val email: String,
-    val city: String,
-    val bio: String,
+    var city: String,
+    var bio: String,
     val avatarUrl: String,
     val likes: MutableList<String>
 ) : Parcelable

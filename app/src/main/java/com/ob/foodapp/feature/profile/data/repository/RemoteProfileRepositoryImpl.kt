@@ -32,4 +32,25 @@ class RemoteProfileRepositoryImpl(
             }
     }
 
+    override suspend fun updateProfile(
+        profile: DomainProfile,
+        onCompletedBlock: (Boolean) -> Unit
+    ) {
+        fireStore
+            .collection("users")
+            .document(profile.id!!)
+            .update(
+                mapOf<String, String>(
+                    "name" to profile.name!!,
+                    "city" to profile.city!!,
+                    "bio" to profile.bio!!
+                )
+            ).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onCompletedBlock.invoke(true)
+                } else {
+                    onCompletedBlock.invoke(false)
+                }
+            }
+    }
 }

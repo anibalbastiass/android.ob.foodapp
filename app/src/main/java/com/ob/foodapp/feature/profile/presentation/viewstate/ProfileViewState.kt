@@ -7,5 +7,6 @@ import com.ob.mvicore.MviViewState
 sealed class ProfileViewState : MviViewState {
     object InitialState : ProfileViewState()
     class GetProfile(val profile: UiProfile) : ProfileViewState()
+    object UpdateProfile : ProfileViewState()
     object NotFoundProfile : ProfileViewState()
 }

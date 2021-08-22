@@ -6,5 +6,6 @@ import com.ob.mvicore.MviAction
 
 sealed class ProfileAction : MviAction {
     class GetProfileSuccess(val profile: DomainProfile) : ProfileAction()
+    object UpdateProfileSuccess : ProfileAction()
     object GetProfileError : ProfileAction()
 }
