@@ -9,7 +9,7 @@ object AndroidConfig {
 
     // Version Name and code
     private const val versionMajor = 0
-    private const val versionMinor = 1
+    private const val versionMinor = 2
     private const val versionPatch = 0
 
     internal val currentVersion = SemanticVersion(

@@ -5,6 +5,20 @@
     android:id="@+id/app_navigation_graph"
     app:startDestination="@id/nav_sign_in">
 
+    <action
+        android:id="@+id/action_nav_sign_in"
+        app:destination="@+id/nav_sign_in"
+        app:popUpTo="@+id/app_navigation_graph"
+        app:launchSingleTop="true"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_nav_result"
+        app:destination="@+id/nav_result"
+        app:popUpTo="@+id/app_navigation_graph"
+        app:launchSingleTop="true"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/nav_sign_in"
         android:name="com.ob.foodapp.feature.signin.ui.SignInFragment"
@@ -13,7 +27,10 @@
 
         <action
             android:id="@+id/action_nav_sign_in_to_nav_result"
-            app:destination="@id/nav_result" />
+            app:destination="@id/nav_result"
+            app:popUpTo="@+id/app_navigation_graph"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
 
     </fragment>
 
@@ -42,6 +59,16 @@
         <argument
             android:name="userId"
             app:argType="string" />
+
+        <action
+            android:id="@+id/action_nav_profile_to_nav_sign_in"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_sign_in"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_nav_profile_to_nav_result"
+            app:popUpTo="@id/nav_result" />
 
     </fragment>
 

@@ -7,14 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.ob.foodapp.BuildConfig
+import com.ob.foodapp.FoodAppNavigator
 import com.ob.foodapp.R
 import com.ob.foodapp.databinding.FragmentProfileBinding
-import com.ob.foodapp.databinding.FragmentSignInBinding
 import com.ob.foodapp.feature.profile.presentation.viewmodel.ProfileViewModel
 import com.ob.foodapp.feature.profile.presentation.viewstate.ProfileViewState
-import com.ob.foodapp.feature.result.ui.ResultFragmentArgs
 import com.ob.foodapp.feature.signin.presentation.viewmodel.AuthViewModel
-import com.ob.foodapp.feature.signin.presentation.viewstate.SignInViewState
+import com.ob.foodapp.feature.signin.presentation.viewstate.AuthViewState
 import com.ob.mvicore.observe
 import com.ob.uicore.utils.ImageUtils
 import org.kodein.di.KodeinAware
@@ -35,6 +34,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
     private lateinit var binding: FragmentProfileBinding
     private val args: ProfileFragmentArgs by navArgs()
     private val profileViewModel: ProfileViewModel by instance()
+    private val authViewModel: AuthViewModel by instance()
+    private val navigator: FoodAppNavigator by instance()
+
+    private var mainView: View? = null
+
+    private val authStateObserver = Observer<AuthViewState> { viewState ->
+        when (viewState) {
+            AuthViewState.SignOutSuccess -> {
+                navigator.navigateToSignIn(mainView!!)
+            }
+            else -> {
+                // Nothing to do
+            }
+        }
+    }
 
     private val stateObserver = Observer<ProfileViewState> { viewState ->
         when (viewState) {
@@ -75,11 +89,34 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
         binding = FragmentProfileBinding.bind(view)
         kodeinTrigger?.trigger()
 
+        this.mainView = view
+
         observe(profileViewModel.stateLiveData, stateObserver)
+        observe(authViewModel.stateLiveData, authStateObserver)
         fetchProfileData()
+
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        binding.btnSaveProfile.setOnClickListener {
+            saveProfileData()
+        }
+
+        binding.btnSignOut.setOnClickListener {
+            signOut()
+        }
+    }
+
+    private fun saveProfileData() {
+
     }
 
     private fun fetchProfileData() {
         profileViewModel.getProfile(args.userId)
+    }
+
+    private fun signOut() {
+        authViewModel.signOut()
     }
 }

@@ -12,7 +12,7 @@ import com.ob.foodapp.FoodAppNavigator
 import com.ob.foodapp.R
 import com.ob.foodapp.databinding.FragmentSignInBinding
 import com.ob.foodapp.feature.signin.presentation.viewmodel.AuthViewModel
-import com.ob.foodapp.feature.signin.presentation.viewstate.SignInViewState
+import com.ob.foodapp.feature.signin.presentation.viewstate.AuthViewState
 import com.ob.mvicore.observe
 import org.kodein.di.KodeinAware
 import org.kodein.di.KodeinTrigger
@@ -36,18 +36,18 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), KodeinAware {
 
     private var mainView: View? = null
 
-    private val stateObserver = Observer<SignInViewState> { viewState ->
+    private val stateObserver = Observer<AuthViewState> { viewState ->
         when (viewState) {
-            SignInViewState.InitialState -> {
+            AuthViewState.InitialState -> {
                 // Nothing to do here
             }
-            is SignInViewState.UserFound -> {
+            is AuthViewState.UserFound -> {
                 viewState.user.let { user ->
                     binding.pbSignIn.visibility = View.GONE
                     navigator.navigateToResult(mainView!!, user)
                 }
             }
-            SignInViewState.NotUserFound -> {
+            AuthViewState.NotUserFound -> {
                 binding.pbSignIn.visibility = View.GONE
                 binding.btnSignIn.visibility = View.VISIBLE
                 Toast.makeText(requireContext(), "User Not Found!", Toast.LENGTH_LONG).show()
