@@ -42,9 +42,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in), KodeinAware {
                 // Nothing to do here
             }
             is SignInViewState.UserFound -> {
-                viewState.user.apply {
+                viewState.user.let { user ->
                     binding.pbSignIn.visibility = View.GONE
-                    navigator.navigateToResult(mainView!!, email)
+                    navigator.navigateToResult(mainView!!, user)
                 }
             }
             SignInViewState.NotUserFound -> {

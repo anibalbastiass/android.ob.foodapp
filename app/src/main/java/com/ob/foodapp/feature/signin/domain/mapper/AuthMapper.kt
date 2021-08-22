@@ -6,6 +6,7 @@ import com.ob.foodapp.feature.signin.domain.model.DomainUser
 class AuthMapper {
 
     fun FirebaseUser.fromFirebaseToDomain() = DomainUser(
+        uid = uid,
         name = displayName ?: "",
         email = email ?: ""
     )

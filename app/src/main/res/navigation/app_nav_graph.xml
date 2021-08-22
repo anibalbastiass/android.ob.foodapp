@@ -24,8 +24,9 @@
         tools:layout="@layout/fragment_result">
 
         <argument
-            android:name="email"
-            app:argType="string" />
+            android:name="user"
+            app:argType="com.ob.foodapp.feature.signin.presentation.model.UiUser" />
+
         <action
             android:id="@+id/action_nav_result_to_nav_profile"
             app:destination="@id/nav_profile" />
@@ -39,7 +40,7 @@
         tools:layout="@layout/fragment_profile">
 
         <argument
-            android:name="email"
+            android:name="userId"
             app:argType="string" />
 
     </fragment>

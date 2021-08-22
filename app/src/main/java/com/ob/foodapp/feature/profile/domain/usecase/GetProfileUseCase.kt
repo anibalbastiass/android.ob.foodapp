@@ -6,10 +6,10 @@ import com.ob.foodapp.feature.profile.domain.repository.RemoteProfileRepository
 class GetProfileUseCase(private val repository: RemoteProfileRepository) {
 
     suspend fun execute(
-        email: String,
+        uid: String,
         onCompletedBlock: (DomainProfile) -> Unit
     ) {
-        repository.getProfile(email, onCompletedBlock)
+        repository.getProfile(uid, onCompletedBlock)
     }
 
 }

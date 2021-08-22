@@ -5,15 +5,18 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.ob.foodapp.BuildConfig
 import com.ob.foodapp.R
 import com.ob.foodapp.databinding.FragmentProfileBinding
 import com.ob.foodapp.databinding.FragmentSignInBinding
 import com.ob.foodapp.feature.profile.presentation.viewmodel.ProfileViewModel
 import com.ob.foodapp.feature.profile.presentation.viewstate.ProfileViewState
+import com.ob.foodapp.feature.result.ui.ResultFragmentArgs
 import com.ob.foodapp.feature.signin.presentation.viewmodel.AuthViewModel
 import com.ob.foodapp.feature.signin.presentation.viewstate.SignInViewState
 import com.ob.mvicore.observe
+import com.ob.uicore.utils.ImageUtils
 import org.kodein.di.KodeinAware
 import org.kodein.di.KodeinTrigger
 import org.kodein.di.android.x.kodein
@@ -30,6 +33,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
     }
 
     private lateinit var binding: FragmentProfileBinding
+    private val args: ProfileFragmentArgs by navArgs()
     private val profileViewModel: ProfileViewModel by instance()
 
     private val stateObserver = Observer<ProfileViewState> { viewState ->
@@ -43,6 +47,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
                 binding.etName.setText(profile.name)
                 binding.etCity.setText(profile.city)
                 binding.etBio.setText(profile.bio)
+
+                binding.tvProfileEmail.text = profile.email
+
+                with(ImageUtils) {
+                    binding.ivProfile.loadImage(
+                        imageUrl = profile.avatarUrl,
+                        placeHolder = R.drawable.profile_placeholder,
+                        isRounded = true
+                    )
+                }
 
             }
             ProfileViewState.NotFoundProfile -> {
@@ -66,6 +80,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
     }
 
     private fun fetchProfileData() {
-//        profileViewModel.getProfile("ivan.simmons@example.com")
+        profileViewModel.getProfile(args.userId)
     }
 }

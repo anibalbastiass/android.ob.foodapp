@@ -21,10 +21,10 @@ class ProfileViewModel(
         ProfileAction.GetProfileError -> ProfileViewState.NotFoundProfile
     }
 
-    fun getProfile(email: String) {
+    fun getProfile(uid: String) {
         viewModelScope.launch {
             try {
-                getProfileUseCase.execute(email) { profile ->
+                getProfileUseCase.execute(uid) { profile ->
                     sendAction(ProfileAction.GetProfileSuccess(profile))
                 }
             } catch (e: Exception) {
