@@ -8,11 +8,21 @@ object ImageUtils {
 
     fun ImageView.loadImage(
         imageUrl: String,
-        @DrawableRes placeHolder: Int
+        @DrawableRes placeHolder: Int,
+        isRounded: Boolean = false
     ) {
-        Glide.with(context)
-            .load(imageUrl)
-            .placeholder(placeHolder)
-            .into(this)
+        if (isRounded) {
+            background = null
+            Glide.with(context)
+                .load(imageUrl)
+                .circleCrop()
+                .placeholder(placeHolder)
+                .into(this)
+        } else {
+            Glide.with(context)
+                .load(imageUrl)
+                .placeholder(placeHolder)
+                .into(this)
+        }
     }
 }

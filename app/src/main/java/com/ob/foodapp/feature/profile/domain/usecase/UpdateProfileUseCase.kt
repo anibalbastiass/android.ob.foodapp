@@ -3,13 +3,13 @@ package com.ob.foodapp.feature.profile.domain.usecase
 import com.ob.foodapp.feature.profile.domain.model.DomainProfile
 import com.ob.foodapp.feature.profile.domain.repository.RemoteProfileRepository
 
-class GetProfileUseCase(private val repository: RemoteProfileRepository) {
+class UpdateProfileUseCase(private val repository: RemoteProfileRepository) {
 
     suspend fun execute(
-        uid: String,
-        onCompletedBlock: (DomainProfile) -> Unit
+        profile: DomainProfile,
+        onCompletedBlock: (Boolean) -> Unit
     ) {
-        repository.getProfile(uid, onCompletedBlock)
+        repository.updateProfile(profile, onCompletedBlock)
     }
 
 }

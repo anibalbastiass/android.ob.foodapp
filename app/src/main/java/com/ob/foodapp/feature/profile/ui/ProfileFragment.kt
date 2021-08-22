@@ -5,15 +5,18 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.ob.foodapp.BuildConfig
+import com.ob.foodapp.FoodAppNavigator
 import com.ob.foodapp.R
 import com.ob.foodapp.databinding.FragmentProfileBinding
-import com.ob.foodapp.databinding.FragmentSignInBinding
+import com.ob.foodapp.feature.profile.presentation.model.UiProfile
 import com.ob.foodapp.feature.profile.presentation.viewmodel.ProfileViewModel
 import com.ob.foodapp.feature.profile.presentation.viewstate.ProfileViewState
 import com.ob.foodapp.feature.signin.presentation.viewmodel.AuthViewModel
-import com.ob.foodapp.feature.signin.presentation.viewstate.SignInViewState
+import com.ob.foodapp.feature.signin.presentation.viewstate.AuthViewState
 import com.ob.mvicore.observe
+import com.ob.uicore.utils.ImageUtils
 import org.kodein.di.KodeinAware
 import org.kodein.di.KodeinTrigger
 import org.kodein.di.android.x.kodein
@@ -30,7 +33,26 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
     }
 
     private lateinit var binding: FragmentProfileBinding
+    private val args: ProfileFragmentArgs by navArgs()
     private val profileViewModel: ProfileViewModel by instance()
+    private val authViewModel: AuthViewModel by instance()
+    private val navigator: FoodAppNavigator by instance()
+
+    private var mainView: View? = null
+
+    private val authStateObserver = Observer<AuthViewState> { viewState ->
+        when (viewState) {
+            AuthViewState.SignOutSuccess -> {
+                navigator.navigateToSignIn(mainView!!)
+            }
+            AuthViewState.NotUserFound -> {
+                Toast.makeText(requireContext(), "SignOut Error!", Toast.LENGTH_LONG).show()
+            }
+            else -> {
+                // Nothing to do
+            }
+        }
+    }
 
     private val stateObserver = Observer<ProfileViewState> { viewState ->
         when (viewState) {
@@ -44,9 +66,26 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
                 binding.etCity.setText(profile.city)
                 binding.etBio.setText(profile.bio)
 
+                binding.tvProfileEmail.text = profile.email
+
+                with(ImageUtils) {
+                    binding.ivProfile.loadImage(
+                        imageUrl = profile.avatarUrl,
+                        placeHolder = R.drawable.profile_placeholder,
+                        isRounded = true
+                    )
+                }
+
+                // Set Click Listener
+                binding.btnSaveProfile.setOnClickListener {
+                    saveProfileData(profile)
+                }
             }
             ProfileViewState.NotFoundProfile -> {
                 Toast.makeText(requireContext(), "User Not Found!", Toast.LENGTH_LONG).show()
+            }
+            ProfileViewState.UpdateProfile -> {
+                navigator.goBackToResult(mainView!!)
             }
         }
     }
@@ -61,11 +100,34 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), KodeinAware {
         binding = FragmentProfileBinding.bind(view)
         kodeinTrigger?.trigger()
 
+        this.mainView = view
+
         observe(profileViewModel.stateLiveData, stateObserver)
+        observe(authViewModel.stateLiveData, authStateObserver)
         fetchProfileData()
+
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        binding.btnSignOut.setOnClickListener {
+            signOut()
+        }
+    }
+
+    private fun saveProfileData(profile: UiProfile) {
+        profile.name = binding.etName.text.toString()
+        profile.city = binding.etCity.text.toString()
+        profile.bio = binding.etBio.text.toString()
+
+        profileViewModel.updateProfile(profile, args.userId)
     }
 
     private fun fetchProfileData() {
-//        profileViewModel.getProfile("ivan.simmons@example.com")
+        profileViewModel.getProfile(args.userId)
+    }
+
+    private fun signOut() {
+        authViewModel.signOut()
     }
 }

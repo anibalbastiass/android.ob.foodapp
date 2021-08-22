@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
@@ -37,6 +38,7 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
     }
 
     private lateinit var binding: FragmentResultBinding
+    private val args: ResultFragmentArgs by navArgs()
     private val resultViewModel: ResultViewModel by instance()
     private val navigator: FoodAppNavigator by instance()
     private val resultAdapter = ResultAdapter()
@@ -110,7 +112,7 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
         )
 
         binding.ivProfile.setOnClickListener {
-            navigator.navigateToProfile(mainView!!, "")
+            navigator.navigateToProfile(mainView!!, args.user.uid)
         }
     }
 

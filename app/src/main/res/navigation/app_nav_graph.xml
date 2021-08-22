@@ -5,6 +5,20 @@
     android:id="@+id/app_navigation_graph"
     app:startDestination="@id/nav_sign_in">
 
+    <action
+        android:id="@+id/action_nav_sign_in"
+        app:destination="@+id/nav_sign_in"
+        app:launchSingleTop="true"
+        app:popUpTo="@+id/app_navigation_graph"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_nav_result"
+        app:destination="@+id/nav_result"
+        app:launchSingleTop="true"
+        app:popUpTo="@+id/app_navigation_graph"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/nav_sign_in"
         android:name="com.ob.foodapp.feature.signin.ui.SignInFragment"
@@ -13,7 +27,10 @@
 
         <action
             android:id="@+id/action_nav_sign_in_to_nav_result"
-            app:destination="@id/nav_result" />
+            app:destination="@id/nav_result"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/app_navigation_graph"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -24,8 +41,9 @@
         tools:layout="@layout/fragment_result">
 
         <argument
-            android:name="email"
-            app:argType="string" />
+            android:name="user"
+            app:argType="com.ob.foodapp.feature.signin.presentation.model.UiUser" />
+
         <action
             android:id="@+id/action_nav_result_to_nav_profile"
             app:destination="@id/nav_profile" />
@@ -39,8 +57,19 @@
         tools:layout="@layout/fragment_profile">
 
         <argument
-            android:name="email"
+            android:name="userId"
             app:argType="string" />
+
+        <action
+            android:id="@+id/action_nav_profile_to_nav_sign_in"
+            app:destination="@+id/nav_sign_in"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/app_navigation_graph"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_nav_profile_to_nav_result"
+            app:popUpTo="@id/nav_result" />
 
     </fragment>
 
