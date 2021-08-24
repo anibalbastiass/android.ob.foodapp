@@ -15,11 +15,22 @@ class ResultViewModel(
 ) : MviViewModel<ResultViewState, ResultAction>(
     ResultViewState.InitialState
 ) {
-    override fun onReduceState(viewAction: ResultAction) = when(viewAction) {
+    private var likeList: ArrayList<String> = arrayListOf()
+    private var userId: String? = null
+
+    override fun onReduceState(viewAction: ResultAction) = when (viewAction) {
         is ResultAction.GetItemsSuccess -> ResultViewState.GetItems(
-            list = with(mapper) { viewAction.list.map { it.fromDomainToUi() } } as MutableList<UiResultItem>
+            list = with(mapper) { viewAction.list.map { it.fromDomainToUi(likeList) } } as MutableList<UiResultItem>
         )
         ResultAction.GetItemsError -> ResultViewState.NotFoundItems
+    }
+
+    fun setUserId(userId: String) {
+        this.userId = userId
+    }
+
+    fun setLikes(likes: MutableList<String>) {
+        this.likeList = likes as ArrayList<String>
     }
 
     fun getItemsByCategory(category: String) {

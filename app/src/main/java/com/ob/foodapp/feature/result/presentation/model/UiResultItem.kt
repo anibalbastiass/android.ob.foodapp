@@ -5,5 +5,6 @@ data class UiResultItem(
     val imageUrl: String,
     val name: String,
     val price: Long,
-    val rating: Float
+    val rating: Float,
+    val favorite: Boolean = false
 )

@@ -13,10 +13,14 @@ import com.ob.foodapp.BuildConfig
 import com.ob.foodapp.FoodAppNavigator
 import com.ob.foodapp.R
 import com.ob.foodapp.databinding.FragmentResultBinding
+import com.ob.foodapp.feature.profile.presentation.viewmodel.ProfileViewModel
+import com.ob.foodapp.feature.profile.presentation.viewstate.ProfileViewState
 import com.ob.foodapp.feature.result.presentation.viewmodel.ResultViewModel
 import com.ob.foodapp.feature.result.presentation.viewstate.ResultViewState
 import com.ob.foodapp.feature.result.ui.pager.ResultPagerAdapter
 import com.ob.mvicore.observe
+import com.ob.uicore.utils.ImageUtils
+import com.ob.uicore.utils.ImageUtils.loadImage
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -40,6 +44,7 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
     private lateinit var binding: FragmentResultBinding
     private val args: ResultFragmentArgs by navArgs()
     private val resultViewModel: ResultViewModel by instance()
+    private val profileViewModel: ProfileViewModel by instance()
     private val navigator: FoodAppNavigator by instance()
     private val resultAdapter = ResultAdapter()
 
@@ -49,11 +54,37 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
                 // Nothing to do here
             }
             is ResultViewState.GetItems -> {
-                resultAdapter.items = viewState.list
-                resultAdapter.notifyDataSetChanged()
+                resultAdapter.setData(viewState.list)
             }
             ResultViewState.NotFoundItems -> {
                 Toast.makeText(requireContext(), "No Items!", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private val profileStateObserver = Observer<ProfileViewState> { viewState ->
+        when (viewState) {
+            is ProfileViewState.GetProfile -> {
+                resultViewModel.setUserId(args.user.uid)
+                resultViewModel.setLikes(viewState.profile.likes)
+                resultViewModel.getItemsByCategory(
+                    category = binding.tlCategories.getTabAt(0)?.text.toString()
+                )
+
+                // Update avatar Url in icon
+                with(ImageUtils) {
+                    binding.ivProfile.loadImage(
+                        imageUrl = viewState.profile.avatarUrl,
+                        placeHolder = R.drawable.profile_placeholder,
+                        isRounded = true
+                    )
+                }
+            }
+            else -> {
+                resultViewModel.setUserId(args.user.uid)
+                resultViewModel.getItemsByCategory(
+                    category = binding.tlCategories.getTabAt(0)?.text.toString()
+                )
             }
         }
     }
@@ -75,8 +106,8 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
         onSelectTabItem()
 
         observe(resultViewModel.stateLiveData, stateObserver)
-
-        resultViewModel.getItemsByCategory(binding.tlCategories.getTabAt(0)?.text.toString())
+        observe(profileViewModel.stateLiveData, profileStateObserver)
+        fetchProfileData()
     }
 
     private fun onSelectTabItem() {
@@ -116,4 +147,7 @@ class ResultFragment : Fragment(R.layout.fragment_result), KodeinAware {
         }
     }
 
+    private fun fetchProfileData() {
+        profileViewModel.getProfile(args.user.uid)
+    }
 }
